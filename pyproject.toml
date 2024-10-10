@@ -1,0 +1,68 @@
+[tool.poetry]
+name = "ProjectTemplate"
+version = "0.1.0"
+description = "Python project template"
+authors = ["Alex Samsonik <alexs@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "src" }]
+
+[tool.poetry.dependencies]
+faker = "23.3.0"
+pre-commit = "^3.7.0"
+python = "^3.12"
+ruff = "^0.6.2"
+
+# Configuration for Robotidy
+[tool.robotidy]
+overwrite = true
+diff = true
+spacecount = 4
+continuation-indent = 4
+configure = [
+    "RenameKeywords:enabled=True:ignore_library=True",
+    "NormalizeTags:normalize_case=False",
+    "RenameTestCases:enabled=True:capitalize_each_word=True",
+    "NormalizeSeparators:skip_tags=True"
+]
+
+# Configuration for Robocop.
+[tool.robocop]
+exclude = [
+    "W0503",  # Keyword has too many keywords inside.
+    "W0504",  # Test case is too long.
+    "W0505",  # Test case has too many keywords inside.
+    "W0506",  # File has too many lines.
+]
+ignore = ["sandbox.robot"]
+configure = [
+    "line-too-long:line_length:120"
+]
+persistent = true
+
+[tool.ruff]
+line-length = 120  # Allow lines to be as long as 120.
+target-version = "py312"  # Assume Python 3.12.
+show-fixes = true  # Enumerate all fixed violations.
+
+[tool.ruff.lint]
+fixable = ["ALL"]
+select = [
+    "D",  # pydocstyle
+    "D212",  # Multi-line docstring summary should start at the first line
+    "E101",  # Indentation contains mixed spaces and tabs
+    "E4",  # pycodestyle imports
+    "E7",  # pycodestyle
+    "E9",  # pycodestyle
+    "F",  # Pyflakes
+    "S",  # flake8-bandit
+    "W",  # pycodestyle warnings
+]
+ignore = [
+    "D104",  # Missing docstring in public package
+    "D105",  # Missing docstring in magic method
+    "D107",  # Missing docstring in init
+    "D401",  # First line of docstring should be in imperative mood: "{first_line}"
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "pep257"
