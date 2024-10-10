@@ -6,11 +6,14 @@ authors = ["Alex Samsonik <alexs@gmail.com>"]
 readme = "README.md"
 packages = [{ include = "src" }]
 
+
 [tool.poetry.dependencies]
 faker = "23.3.0"
 pre-commit = "^3.7.0"
 python = "^3.12"
 ruff = "^0.6.2"
+pytest = "^8.3.3"
+
 
 # Configuration for Robotidy
 [tool.robotidy]
@@ -25,6 +28,7 @@ configure = [
     "NormalizeSeparators:skip_tags=True"
 ]
 
+
 # Configuration for Robocop.
 [tool.robocop]
 exclude = [
@@ -34,9 +38,7 @@ exclude = [
     "W0506",  # File has too many lines.
 ]
 ignore = ["sandbox.robot"]
-configure = [
-    "line-too-long:line_length:120"
-]
+configure = ["line-too-long:line_length:120"]
 persistent = true
 
 [tool.ruff]
