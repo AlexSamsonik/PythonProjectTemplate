@@ -1,0 +1,31 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      # Run the linter.
+      - id: ruff
+        args: [--fix, --show-fixes]
+      # Run the formatter.
+      - id: ruff-format
+  - repo: https://github.com/google/yamlfmt
+    rev: v0.13.0
+    hooks:
+      - id: yamlfmt
+  - repo: https://github.com/abravalheri/validate-pyproject
+    rev: v0.20.2
+    hooks:
+      - id: validate-pyproject
+  - repo: local
+    hooks:
+      - id: robocop
+        name: robocop
+        entry: robocop
+        files: '.*.(robot|resource)$'
+        language: python
+        description: "RobotFramework source code linter."
+      - id: robotidy
+        name: robotidy
+        entry: robotidy
+        files: '.*.(robot|resource)$'
+        language: python
+        description: "RobotFramework source code formatter."
